@@ -16,7 +16,7 @@
         android:textColor="@android:color/white"
         android:textStyle="bold"
         android:textSize="15sp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="15dp"
         tools:text="Section1"/>
 
 </RelativeLayout>

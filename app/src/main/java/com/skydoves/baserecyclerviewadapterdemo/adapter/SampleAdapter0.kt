@@ -23,7 +23,7 @@ class SampleAdapter0(private val delegate: SampleViewHolder.Delegate) : BaseAdap
     }
 
     fun addItems(sampleItems: List<SampleItem>) {
-        sections[section_item].addAll(sampleItems)
+        addItemOnSection(section_item, sampleItems)
         notifyDataSetChanged()
     }
 
