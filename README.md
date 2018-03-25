@@ -1,5 +1,6 @@
 # BaseRecyclerViewAdapter <br>
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Build Status](https://travis-ci.org/skydoves/BaseRecyclerViewAdapter.svg?branch=master)](https://travis-ci.org/skydoves/BaseRecyclerViewAdapter)
 <br>
 An Adapter and ViewHolder that let you implementation a RecyclerView to be split into sections.
 
@@ -213,7 +214,7 @@ And it would not be called when fetching from network or loading ended.<br>
 
 # License
 ```xml
-Copyright 2017 skydoves
+Copyright 2018 skydoves
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
