@@ -17,6 +17,7 @@
 
 package com.skydoves.baserecyclerviewadapter
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.support.v7.widget.GridLayoutManager
@@ -26,10 +27,10 @@ import android.util.AttributeSet
 
 class LiveRecyclerView : RecyclerView {
 
-    private var loadPublisher = MutableLiveData<Long>()
+    private var loadPublisher = MutableLiveData<Int>()
 
-    private var pageCount: Long = 1
-    private var totalPage: Long = -1
+    private var pageCount: Int = 1
+    var totalPage: Int = -1
 
     private var pagingThreshold = 5
 
@@ -69,16 +70,20 @@ class LiveRecyclerView : RecyclerView {
         this.addOnScrollListener(onScrollListener)
     }
 
+    fun loadMore(): LiveData<Int> {
+        return this.loadPublisher
+    }
+
     fun countPage() {
         this.pageCount++
     }
 
-    fun setLoading(isLoading: Boolean) {
-        this.isLoading = isLoading
+    fun getPageCount(): Int {
+        return this.pageCount
     }
 
-    fun setTotalPage(totalPage: Long) {
-        this.totalPage = totalPage
+    fun setLoading(isLoading: Boolean) {
+        this.isLoading = isLoading
     }
 
     fun resetPage() {

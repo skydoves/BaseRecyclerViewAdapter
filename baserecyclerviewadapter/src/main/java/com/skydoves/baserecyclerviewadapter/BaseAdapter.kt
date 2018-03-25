@@ -34,6 +34,10 @@ abstract class BaseAdapter : RecyclerView.Adapter<BaseViewHolder>(), LifecycleOb
         return sections
     }
 
+    fun <T> sectionItems(section: Int): MutableList<Any> {
+        return sections[section]
+    }
+
     fun <T> addSection(section: List<T>) {
         sections.add(ArrayList<Any>(section))
     }
@@ -42,6 +46,14 @@ abstract class BaseAdapter : RecyclerView.Adapter<BaseViewHolder>(), LifecycleOb
         for (section in sections) {
             addSection(section)
         }
+    }
+
+    fun addItemOnSection(section: Int, item: Any) {
+        sections[section].add(item)
+    }
+
+    fun <T> addItemsOnSection(section: Int, items: List<T>) {
+        sections[section].addAll(ArrayList<Any>(items))
     }
 
     fun <T> setSection(row: Int, section: List<T>) {

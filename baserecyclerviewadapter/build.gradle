@@ -15,14 +15,13 @@ publish {
 }
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 }
 
@@ -32,12 +31,9 @@ dokka {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
+    implementation "com.android.support:recyclerview-v7:27.1.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation "com.android.support:recyclerview-v7:26.1.0"
-    implementation "android.arch.lifecycle:livedata:1.1.1"
+    implementation "android.arch.lifecycle:livedata:1.1.0"
 }
 
 tasks.withType(Javadoc) {
