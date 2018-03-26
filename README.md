@@ -215,7 +215,7 @@ private fun loadMore() {
 ```
 
 This is an [example](https://github.com/skydoves/GithubFollows/blob/master/app/src/main/java/com/skydoves/githubfollows/view/ui/main/MainActivity.kt) of RecyclerViewPaginator with ViewModel's network fetching. <br>
-And you can reference more at this [repository](https://github.com/skydoves).
+And you can reference more at this [repository](https://github.com/skydoves/GithubFollows).
 
 ```kotlin
 override fun onCreate(savedInstanceState: Bundle?) {
