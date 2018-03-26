@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/skydoves/BaseRecyclerViewAdapter.svg?branch=master)](https://travis-ci.org/skydoves/BaseRecyclerViewAdapter)
 <br>
 An Adapter and ViewHolder that let you implementation a RecyclerView to be split into sections.<br>
+And lets you implementation paging and endless-recyclerView easily.<br>
 
 ![demo0](https://user-images.githubusercontent.com/24237865/37874830-b05ad8ea-3071-11e8-906e-670f56d6912b.png)
 ![demo1](https://user-images.githubusercontent.com/24237865/37874865-16e6bb42-3072-11e8-9c6c-aa739cb05410.png)
@@ -104,7 +105,7 @@ class SampleActivity0 : AppCompatActivity(), SampleViewHolder.Delegate {
 ```
 
 ### Multi-Type Rows
-If you want to implement multi-sections or rows on a RecyclerView, you should create two custom ViewHolders.<br>
+If you want to implement multi-sections or rows on a RecyclerView, you should create more than two custom ViewHolders.<br>
 And you can handle multi-layout like below.
 
 ```kotlin
@@ -140,7 +141,7 @@ class SampleAdapter1(private val delegate: SampleViewHolder.Delegate): BaseAdapt
 ```
 
 ### Multi-Type Sections
-Or you can handle multi-layout by sections like below.
+Or you can handle multi-layout by sections like below.<br>
 ```kotlin
 class GithubUserAdapter(val delegate_header: GithubUserHeaderViewHolder.Delegate,
                         val delegate: GithubUserViewHolder.Delegate) : BaseAdapter() {
@@ -167,14 +168,14 @@ class GithubUserAdapter(val delegate_header: GithubUserHeaderViewHolder.Delegate
     }
 
     override fun layout(sectionRow: BaseAdapter.SectionRow): Int {
-        when(sectionRow.section()) {
+        when (sectionRow.section()) {
             section_header -> return R.layout.layout_detail_header
             else -> return R.layout.item_github_user
         }
     }
 
     override fun viewHolder(layout: Int, view: View): BaseViewHolder {
-        when(layout) {
+        when (layout) {
             R.layout.layout_detail_header -> return GithubUserHeaderViewHolder(view, delegate_header)
             else -> return GithubUserViewHolder(view, delegate)
         }
@@ -182,74 +183,71 @@ class GithubUserAdapter(val delegate_header: GithubUserHeaderViewHolder.Delegate
 ```
 
 ### RecyclerViewPaginator
-RecyclerViewPaginator lets you implementation paging or endless-recyclerView easily.<br><br>
+RecyclerViewPaginator lets you implementation paging and endless-recyclerView easily.<br><br>
 ![demo2](https://user-images.githubusercontent.com/24237865/37875097-a49f5f90-3075-11e8-9ece-42ef11aebbb1.gif)
 
 RecylcerViewPaginator performs invoke loadMore when recyclerView needs to load more items.<br>
 And it would not be called when fetching from network or loading ended.<br>
+This is an example of endless-recyclerView.<br>
 
 ```kotlin
-    private val adapter by lazy { SampleAdapter0(this) }
-    private lateinit var paginator: RecyclerViewPaginator
+private val adapter by lazy { SampleAdapter0(this) }
+private lateinit var paginator: RecyclerViewPaginator
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sample2)
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_sample2)
 
-        sample2_recyclerView.adapter = adapter
-        sample2_recyclerView.layoutManager = LinearLayoutManager(this)
-        paginator = RecyclerViewPaginator(
-                recyclerView = sample2_recyclerView,
-                onLast = { false },
-                loadMore = { loadMore() },
-                isLoading = {false }
-        )
-        loadMore()
-    }
+    sample2_recyclerView.adapter = adapter
+    sample2_recyclerView.layoutManager = LinearLayoutManager(this)
+    paginator = RecyclerViewPaginator(
+            recyclerView = sample2_recyclerView,
+            onLast = { false },
+            loadMore = { loadMore() },
+            isLoading = { false }
+    )
+    loadMore()
+}
 
-    private fun loadMore() {
-        adapter.addItems(MockSamples.mockSampleItemsRandom(this, paginator.currentPage * 10,10))
-    }
+private fun loadMore() {
+    adapter.addItems(MockSamples.mockSampleItemsRandom(this, paginator.currentPage * 10, 10))
+}
 ```
 
-Below [example](https://github.com/skydoves/GithubFollows/blob/master/app/src/main/java/com/skydoves/githubfollows/view/ui/main/MainActivity.kt) is a usage of RecyclerViewPaginator with ViewModel's network fetching. <br>
+This is an [example](https://github.com/skydoves/GithubFollows/blob/master/app/src/main/java/com/skydoves/githubfollows/view/ui/main/MainActivity.kt) of RecyclerViewPaginator with ViewModel's network fetching. <br>
+And you can reference more at this [repository](https://github.com/skydoves).
 
 ```kotlin
 override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    AndroidInjection.inject(this)
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
 
-        main_recyclerView.adapter = adapter
-        main_recyclerView.layoutManager = LinearLayoutManager(this)
-        paginator = RecyclerViewPaginator(
-                recyclerView = main_recyclerView,
-                isLoading = { viewModel.fetchStatus.isOnLoading },
-                loadMore = { loadMore(it) },
-                onLast = { viewModel.fetchStatus.isOnLast }
-        )
+    main_recyclerView.adapter = adapter
+    main_recyclerView.layoutManager = LinearLayoutManager(this)
+    paginator = RecyclerViewPaginator(
+            recyclerView = main_recyclerView,
+            isLoading = { viewModel.fetchStatus.isOnLoading },
+            loadMore = { loadMore(it) },
+            onLast = { viewModel.fetchStatus.isOnLast }
+    )
 
-        initializeUI()
-        observeViewModel()
-    }
+    initializeUI()
+    observeViewModel()
+}
 
-    private fun observeViewModel() {
-        viewModel.githubUserLiveData.observe(this, Observer { it?.let { updateGithubUser(it) } })
-        viewModel.followersLiveData.observe(this, Observer { it?.let { updateFollowerList(it) } })
-    }
+private fun loadMore(page: Int) {
+    viewModel.postPage(page)
+}
 
-    private fun loadMore(page: Int) {
-        viewModel.postPage(page)
-    }
-
-    private fun updateGithubUser(resource: Resource<GithubUser>) {
-        when(resource.status) {
-            Status.SUCCESS -> adapter.updateHeader(resource)
-            Status.ERROR -> toast(resource.message.toString())
-            Status.LOADING -> {}
+private fun updateGithubUser(resource: Resource<GithubUser>) {
+    when (resource.status) {
+        Status.SUCCESS -> adapter.updateHeader(resource)
+        Status.ERROR -> toast(resource.message.toString())
+        Status.LOADING -> {
         }
     }
-
+}
 ```
 
 # License
