@@ -38,12 +38,12 @@ class LiveRecyclerView : RecyclerView {
 
     private val onScrollListener = object : RecyclerView.OnScrollListener() {
 
-        override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
 
-            recyclerView?.layoutManager?.let {
-                val visibleItemCount = recyclerView.layoutManager.childCount
-                val totalItemCount = recyclerView.layoutManager.itemCount
+            recyclerView.layoutManager?.let {
+                val visibleItemCount = it.childCount
+                val totalItemCount = it.itemCount
                 val firstVisibleItemPosition = when (it) {
                     is LinearLayoutManager -> it.findLastVisibleItemPosition()
                     is GridLayoutManager -> it.findLastVisibleItemPosition()

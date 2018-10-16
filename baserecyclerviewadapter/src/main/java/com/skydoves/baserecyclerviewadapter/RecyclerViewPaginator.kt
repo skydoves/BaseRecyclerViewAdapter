@@ -26,8 +26,10 @@ class RecyclerViewPaginator(private val recyclerView: RecyclerView,
                             private val loadMore: (Int) -> Unit,
                             private val onLast: () -> Boolean = { true }): RecyclerView.OnScrollListener() {
 
-    private var threshold = 10
+    var threshold = 10
     var currentPage: Int = 0
+
+    var endWithAuto = false
 
     init {
         recyclerView.addOnScrollListener(this)
@@ -37,26 +39,28 @@ class RecyclerViewPaginator(private val recyclerView: RecyclerView,
         super.onScrolled(recyclerView, dx, dy)
 
         val layoutManager = recyclerView.layoutManager
-        val visibleItemCount = recyclerView.layoutManager.childCount
-        val totalItemCount = recyclerView.layoutManager.itemCount
-        val firstVisibleItemPosition = when (layoutManager) {
-            is LinearLayoutManager -> layoutManager.findLastVisibleItemPosition()
-            is GridLayoutManager -> layoutManager.findLastVisibleItemPosition()
-            else -> return
-        }
+        layoutManager?.let {
+            val visibleItemCount = it.childCount
+            val totalItemCount = it.itemCount
+            val firstVisibleItemPosition = when (layoutManager) {
+                is LinearLayoutManager -> layoutManager.findLastVisibleItemPosition()
+                is GridLayoutManager -> layoutManager.findLastVisibleItemPosition()
+                else -> return
+            }
 
-        if (onLast() || isLoading()) return
+            if (onLast() || isLoading()) return
 
-        if ((visibleItemCount + firstVisibleItemPosition + threshold) >= totalItemCount) {
-            loadMore(++currentPage)
+            if(endWithAuto) {
+                if(visibleItemCount + firstVisibleItemPosition == totalItemCount) return
+            }
+
+            if ((visibleItemCount + firstVisibleItemPosition + threshold) >= totalItemCount) {
+                loadMore(++currentPage)
+            }
         }
     }
 
     fun resetCurrentPage() {
         this.currentPage = 0
-    }
-
-    fun setThreshold(threshold: Int) {
-        this.threshold = threshold
     }
 }
