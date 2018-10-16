@@ -10,9 +10,9 @@ And lets you implementation paging and endless-recyclerView easily.<br>
 
 ## Including in your project
 #### build.gradle
-```java
+```gradle
 dependencies {
-  implementation "com.github.skydoves:baserecyclerviewadapter:0.1.0"
+    implementation "com.github.skydoves:baserecyclerviewadapter:0.1.1"
 }
 ```
 
