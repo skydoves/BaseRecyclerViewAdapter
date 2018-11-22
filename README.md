@@ -1,5 +1,6 @@
 # BaseRecyclerViewAdapter <br>
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Build Status](https://travis-ci.org/skydoves/BaseRecyclerViewAdapter.svg?branch=master)](https://travis-ci.org/skydoves/BaseRecyclerViewAdapter)
 <br>
 An Adapter and ViewHolder that let you implementation a RecyclerView to be split into sections.<br>
@@ -12,7 +13,7 @@ And lets you implementation paging and endless-recyclerView easily.<br>
 #### build.gradle
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:baserecyclerviewadapter:0.1.1"
+    implementation "com.github.skydoves:baserecyclerviewadapter:0.1.2"
 }
 ```
 
@@ -21,7 +22,7 @@ dependencies {
 __bindData__ method receive an item data what "Any" type in Kotlin or "object" type in Java.<br>
 and you can implement __onItemClick__ listener about the item or whatever.
 
-```kotlin
+```java
 class SampleViewHolder(view: View, private val delegate: Delegate) : BaseViewHolder(view) {
 
     private lateinit var sampleItem: SampleItem
@@ -55,7 +56,7 @@ class SampleViewHolder(view: View, private val delegate: Delegate) : BaseViewHol
 
 2. Create a custom Adapter class extending BaseAdapter.
 
-```kotlin
+```java
 class SampleAdapter0(private val delegate: SampleViewHolder.Delegate) : BaseAdapter() {
 
     private val section_item = 0
@@ -80,7 +81,7 @@ class SampleAdapter0(private val delegate: SampleViewHolder.Delegate) : BaseAdap
 ```
 
 3. And use at Activities or Fragments.
-```kotlin
+```java
 class SampleActivity0 : AppCompatActivity(), SampleViewHolder.Delegate {
 
     private val adapter by lazy { SampleAdapter0(this) }
@@ -108,7 +109,7 @@ class SampleActivity0 : AppCompatActivity(), SampleViewHolder.Delegate {
 If you want to implement multi-sections or rows on a RecyclerView, you should create more than two custom ViewHolders.<br>
 And you can handle multi-layout like below.
 
-```kotlin
+```java
 class SampleAdapter1(private val delegate: SampleViewHolder.Delegate): BaseAdapter() {
 
     init {
@@ -142,7 +143,7 @@ class SampleAdapter1(private val delegate: SampleViewHolder.Delegate): BaseAdapt
 
 ### Multi-Type Sections
 Or you can handle multi-layout by sections like below.<br>
-```kotlin
+```java
 class GithubUserAdapter(val delegate_header: GithubUserHeaderViewHolder.Delegate,
                         val delegate: GithubUserViewHolder.Delegate) : BaseAdapter() {
 
@@ -190,7 +191,7 @@ RecylcerViewPaginator performs invoke loadMore when recyclerView needs to load m
 And it would not be called when fetching from network or loading ended.<br>
 This is an example of endless-recyclerView.<br>
 
-```kotlin
+```java
 private val adapter by lazy { SampleAdapter0(this) }
 private lateinit var paginator: RecyclerViewPaginator
 
@@ -217,7 +218,7 @@ private fun loadMore() {
 This is an [example](https://github.com/skydoves/GithubFollows/blob/master/app/src/main/java/com/skydoves/githubfollows/view/ui/main/MainActivity.kt) of RecyclerViewPaginator with ViewModel's network fetching. <br>
 And you can reference more at this [repository](https://github.com/skydoves/GithubFollows).
 
-```kotlin
+```java
 override fun onCreate(savedInstanceState: Bundle?) {
     AndroidInjection.inject(this)
     super.onCreate(savedInstanceState)
