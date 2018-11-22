@@ -1,14 +1,21 @@
 
 buildscript {
-    ext.kotlin_version = '1.2.70'
-    ext.dokka_version = '0.9.16'
-    ext.bintray_version = '0.9'
-    ext.anko_version = '0.10.1'
+
+    ext {
+        kotlin_version = '1.2.71'
+        dokka_version = '0.9.16'
+        bintray_version = '0.9'
+        anko_version = '0.10.1'
+        accompat_version = '1.0.2'
+        androidx_version = '1.0.0'
+        livedata_version = '2.0.0'
+    }
 
     repositories {
         google()
         jcenter()
     }
+
     dependencies {
         classpath "com.android.tools.build:gradle:3.2.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
