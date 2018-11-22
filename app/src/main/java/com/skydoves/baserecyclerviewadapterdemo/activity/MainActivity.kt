@@ -1,6 +1,7 @@
 package com.skydoves.baserecyclerviewadapterdemo.activity
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.skydoves.baserecyclerviewadapterdemo.R
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,8 +18,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        button0.setOnClickListener { startActivity<SampleActivity0>() }
-        button1.setOnClickListener { startActivity<SampleActivity1>() }
-        button2.setOnClickListener { startActivity<SampleActivity2>() }
+        button0.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                startActivity<SampleActivity0>()
+            }
+        })
+        button1.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                startActivity<SampleActivity1>()
+            }
+        })
+        button2.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                startActivity<SampleActivity2>()
+            }
+        })
     }
 }
