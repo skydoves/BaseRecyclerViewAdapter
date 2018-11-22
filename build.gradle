@@ -1,7 +1,8 @@
+
 buildscript {
     ext.kotlin_version = '1.2.70'
     ext.dokka_version = '0.9.16'
-    ext.bintray_version = '0.8.0'
+    ext.bintray_version = '0.9'
     ext.anko_version = '0.10.1'
 
     repositories {
@@ -9,7 +10,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath "com.android.tools.build:gradle:3.2.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
         classpath "com.novoda:bintray-release:$bintray_version"
