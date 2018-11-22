@@ -17,14 +17,15 @@
 
 package com.skydoves.baserecyclerviewadapter
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import android.content.Context
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.AttributeSet
 
+@Suppress( "unused", "MemberVisibilityCanBePrivate")
 class LiveRecyclerView : RecyclerView {
 
     private var loadPublisher = MutableLiveData<Int>()

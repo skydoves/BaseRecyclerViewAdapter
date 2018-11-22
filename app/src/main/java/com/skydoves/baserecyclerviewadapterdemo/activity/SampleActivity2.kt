@@ -1,9 +1,9 @@
 package com.skydoves.baserecyclerviewadapterdemo.activity
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.skydoves.baserecyclerviewadapter.RecyclerViewPaginator
 import com.skydoves.baserecyclerviewadapterdemo.MockSamples
 import com.skydoves.baserecyclerviewadapterdemo.R

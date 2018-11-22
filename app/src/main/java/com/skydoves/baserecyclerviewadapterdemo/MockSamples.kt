@@ -2,7 +2,7 @@ package com.skydoves.baserecyclerviewadapterdemo
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.skydoves.baserecyclerviewadapterdemo.model.SampleItem
 import java.util.*
 

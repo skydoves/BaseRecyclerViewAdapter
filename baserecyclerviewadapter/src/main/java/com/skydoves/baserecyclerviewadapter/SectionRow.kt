@@ -17,6 +17,7 @@
 
 package com.skydoves.baserecyclerviewadapter
 
+@Suppress( "unused", "MemberVisibilityCanBePrivate")
 class SectionRow {
     private var section: Int
     private var row: Int

@@ -7,7 +7,7 @@ publish {
     userOrg = 'devmagician'
     groupId = 'com.github.skydoves'
     artifactId = 'baserecyclerviewadapter'
-    publishVersion = '0.1.1'
+    publishVersion = '0.1.2'
     desc = 'This is BaseRecyclerViewAdapter by skydoves'
     website = 'https://github.com/skydoves/BaseRecyclerViewAdapter'
     issueTracker = "${website}/issues"
@@ -31,9 +31,9 @@ dokka {
 }
 
 dependencies {
-    implementation "com.android.support:recyclerview-v7:28.0.0"
+    implementation "androidx.recyclerview:recyclerview:$androidx_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "android.arch.lifecycle:livedata:1.1.1"
+    implementation "androidx.lifecycle:lifecycle-livedata:$livedata_version"
 }
 
 tasks.withType(Javadoc) {
