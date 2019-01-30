@@ -10,6 +10,7 @@ And lets you implement paging and endless-recyclerView easily.<br>
 ![demo1](https://user-images.githubusercontent.com/24237865/37874865-16e6bb42-3072-11e8-9c6c-aa739cb05410.png)
 
 ## Including in your project
+[![Download](https://api.bintray.com/packages/devmagician/maven/baserecyclerviewadapter/images/download.svg)](https://bintray.com/devmagician/maven/baserecyclerviewadapter/_latestVersion) [![JitPack](https://jitpack.io/v/skydoves/BaseRecyclerViewAdapter.svg)](https://jitpack.io/#skydoves/BaseRecyclerViewAdapter)
 #### build.gradle
 ```gradle
 dependencies {
