@@ -13,7 +13,7 @@ And lets you implement paging and endless-recyclerView easily.<br>
 #### build.gradle
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:baserecyclerviewadapter:0.1.2"
+    implementation "com.github.skydoves:baserecyclerviewadapter:0.1.3"
 }
 ```
 
