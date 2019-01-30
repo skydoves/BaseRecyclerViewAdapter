@@ -40,3 +40,5 @@ tasks.withType(Javadoc) {
     excludes = ['**/*.kt']
     options.addBooleanOption('Xdoclint:none', true)
 }
+
+apply from: '../spotless.gradle'

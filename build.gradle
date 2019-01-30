@@ -6,6 +6,7 @@ buildscript {
         dokka_version = '0.9.16'
         bintray_version = '0.9'
         anko_version = '0.10.1'
+        spotless_veresion = '3.17.0'
         accompat_version = '1.0.2'
         androidx_version = '1.0.0'
         livedata_version = '2.0.0'
@@ -17,9 +18,10 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.0'
+        classpath "com.android.tools.build:gradle:3.3.0"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
+        classpath "com.diffplug.spotless:spotless-plugin-gradle:$spotless_veresion"
         classpath "com.novoda:bintray-release:$bintray_version"
     }
 }
