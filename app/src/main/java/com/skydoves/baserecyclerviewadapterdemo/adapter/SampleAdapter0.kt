@@ -27,8 +27,7 @@ import com.skydoves.baserecyclerviewadapterdemo.viewholder.SampleViewHolder
 
 @Suppress("PrivatePropertyName")
 class SampleAdapter0(private val delegate: SampleViewHolder.Delegate)
-    : BaseAdapter()
-{
+    : BaseAdapter() {
 
     private val section_item = 0
 

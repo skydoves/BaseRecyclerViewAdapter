@@ -38,54 +38,73 @@ abstract class BaseAdapter :
         return sections
     }
 
+    /** gets mutable an item list on the sections. */
     fun <T> sectionItems(section: Int): MutableList<Any> {
         return sections[section]
     }
 
+    /** adds a section on the section list. */
     fun <T> addSection(section: List<T>) {
-        sections.add(ArrayList<Any>(section))
+        sections().add(ArrayList<Any>(section))
     }
 
-    fun <T> addSections(sections: List<List<T>>) {
+    /** adds a section list on the section list. */
+    fun <T> addSectionList(sections: List<List<T>>) {
         for (section in sections) {
             addSection(section)
         }
     }
 
+    /** adds an item on the section. */
     fun addItemOnSection(section: Int, item: Any) {
-        sections[section].add(item)
+        sections()[section].add(item)
     }
 
+    /** adds an item list on the section. */
     fun <T> addItemListOnSection(section: Int, items: List<T>) {
-        sections[section].addAll(ArrayList<Any>(items))
+        sections()[section].addAll(ArrayList<Any>(items))
     }
 
+    /** removes an item on the section. */
     fun removeItemOnSection(section: Int, item: Any) {
-        sections[section].remove(item)
+        sections()[section].remove(item)
     }
 
-    fun <T> setSection(row: Int, section: List<T>) {
-        sections[row] = ArrayList<Any>(section)
-    }
-
+    /** inserts an section on the section list. */
     fun <T> insertSection(row: Int, section: List<T>) {
-        sections.add(row, ArrayList<Any>(section))
+        sections().add(row, ArrayList<Any>(section))
     }
 
-    fun <T> sectionOrderChange(row: Int) {
-        sections[row].reverse()
+    /** gets section count. */
+    fun sectionCount(section: Int): Int {
+        if (section > sections().size - 1) return 0
+        return sections()[section].size
     }
 
-    fun <T> removeSection(location: Int) {
-        sections.removeAt(location)
+    /** reverses item list on the section. */
+    fun <T> reverseSection(section: Int) {
+        sections()[section].reverse()
     }
 
-    fun clearSections() {
-        sections.clear()
+    /** removes a section on the section list. */
+    fun <T> removeSection(section: Int) {
+        sections().removeAt(section)
     }
 
+    /** clears a section. */
+    fun clearSection(section: Int) {
+        sections()[section].clear()
+    }
+
+    /** clears all sections. */
+    fun clearAllSections() {
+        sections().clear()
+    }
+
+    /** returns layout resources by section rows. */
     protected abstract fun layout(sectionRow: SectionRow): Int
 
+    /** returns [RecyclerView.ViewHolder] by layouts. */
     protected abstract fun viewHolder(@LayoutRes layout: Int, view: View): BaseViewHolder
 
     override fun onViewDetachedFromWindow(holder: BaseViewHolder) {
@@ -115,22 +134,17 @@ abstract class BaseAdapter :
         return layout(sectionRowFromPosition(position))
     }
 
+    /** gets all item counts on the sections. */
     override fun getItemCount(): Int {
         var itemCount = 0
         for (section in sections) {
             itemCount += section.size
         }
-
         return itemCount
     }
 
     protected fun objectFromSectionRow(sectionRow: SectionRow): Any {
-        return sections[sectionRow.section()][sectionRow.row()]
-    }
-
-    protected fun sectionCount(section: Int): Int {
-        if (section > sections().size - 1) return 0
-        else return sections()[section].size
+        return sections[sectionRow.section][sectionRow.row]
     }
 
     protected fun objectFromPosition(position: Int): Any {
@@ -161,6 +175,6 @@ abstract class BaseAdapter :
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public fun onDestroyed() {
-        this.clearSections()
+        this.clearAllSections()
     }
 }

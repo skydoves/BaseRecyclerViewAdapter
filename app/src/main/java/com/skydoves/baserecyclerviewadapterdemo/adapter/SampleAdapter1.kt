@@ -28,8 +28,7 @@ import com.skydoves.baserecyclerviewadapterdemo.viewholder.SampleViewHolder1_Hea
 
 @Suppress("LiftReturnOrAssignment")
 class SampleAdapter1(private val delegate: SampleViewHolder.Delegate)
-    : BaseAdapter()
-{
+    : BaseAdapter() {
 
     init {
         for (i in 0..5) {
@@ -44,7 +43,7 @@ class SampleAdapter1(private val delegate: SampleViewHolder.Delegate)
     }
 
     override fun layout(sectionRow: SectionRow): Int {
-        when (sectionRow.row()) {
+        when (sectionRow.row) {
             0 -> return R.layout.item_sample1_header
             else -> return R.layout.item_sample
         }

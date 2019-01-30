@@ -17,23 +17,10 @@
 package com.skydoves.baserecyclerviewadapter
 
 @Suppress("unused", "MemberVisibilityCanBePrivate")
-class SectionRow {
-    private var section: Int
-    private var row: Int
-
-    constructor() {
-        this.section = 0
-        this.row = 0
-    }
-
-    constructor(section: Int, row: Int) {
-        this.section = section
-        this.row = row
-    }
-
-    fun section(): Int = this.section
-
-    fun row(): Int = this.row
+data class SectionRow(
+    var section: Int = 0,
+    var row: Int = 0
+) {
 
     fun nextSection() {
         this.section++
