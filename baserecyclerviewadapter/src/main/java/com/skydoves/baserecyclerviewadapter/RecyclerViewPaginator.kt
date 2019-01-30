@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2018 skydoves
  *
@@ -21,10 +20,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerViewPaginator(private val recyclerView: RecyclerView,
-                            private val isLoading: () -> Boolean,
-                            private val loadMore: (Int) -> Unit,
-                            private val onLast: () -> Boolean = { true }): RecyclerView.OnScrollListener() {
+class RecyclerViewPaginator(
+    private val recyclerView: RecyclerView,
+    private val isLoading: () -> Boolean,
+    private val loadMore: (Int) -> Unit,
+    private val onLast: () -> Boolean = { true }
+) : RecyclerView.OnScrollListener() {
 
     var threshold = 10
     var currentPage: Int = 0
@@ -50,8 +51,8 @@ class RecyclerViewPaginator(private val recyclerView: RecyclerView,
 
             if (onLast() || isLoading()) return
 
-            if(endWithAuto) {
-                if(visibleItemCount + firstVisibleItemPosition == totalItemCount) return
+            if (endWithAuto) {
+                if (visibleItemCount + firstVisibleItemPosition == totalItemCount) return
             }
 
             if ((visibleItemCount + firstVisibleItemPosition + threshold) >= totalItemCount) {

@@ -1,16 +1,26 @@
+/*
+ * Copyright (C) 2018 skydoves
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.skydoves.baserecyclerviewadapterdemo.activity
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.skydoves.baserecyclerviewadapterdemo.R
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
-
-/**
- * Developed by skydoves on 2018-03-25.
- * Copyright (c) 2018 skydoves rights reserved.
- */
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,20 +28,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        button0.setOnClickListener(object: View.OnClickListener {
-            override fun onClick(p0: View?) {
-                startActivity<SampleActivity0>()
-            }
-        })
-        button1.setOnClickListener(object: View.OnClickListener {
-            override fun onClick(p0: View?) {
-                startActivity<SampleActivity1>()
-            }
-        })
-        button2.setOnClickListener(object: View.OnClickListener {
-            override fun onClick(p0: View?) {
-                startActivity<SampleActivity2>()
-            }
-        })
+        button0.setOnClickListener { startActivity<SampleActivity0>() }
+        button1.setOnClickListener { startActivity<SampleActivity1>() }
+        button2.setOnClickListener { startActivity<SampleActivity2>() }
     }
 }

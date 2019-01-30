@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2018 skydoves
  *
@@ -18,24 +17,30 @@
 package com.skydoves.baserecyclerviewadapter
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseViewHolder(private val view: View) : RecyclerView.ViewHolder(view), View.OnClickListener, View.OnLongClickListener {
+/** BaseViewHolder is an abstract class for structuring the base view holder class. */
+@Suppress("unused", "LeakingThis")
+abstract class BaseViewHolder(private val view: View)
+    : RecyclerView.ViewHolder(view), View.OnClickListener, View.OnLongClickListener {
 
     init {
         view.setOnClickListener(this)
         view.setOnLongClickListener(this)
     }
 
+    /** binds data to the view holder class. */
     @Throws(Exception::class)
     abstract fun bindData(data: Any)
 
-    protected fun view(): View {
+    /** gets the view of the [RecyclerView.ViewHolder]. */
+    fun view(): View {
         return view
     }
 
-    protected fun context(): Context {
+    /** gets the context. */
+    fun context(): Context {
         return view.context
     }
 }

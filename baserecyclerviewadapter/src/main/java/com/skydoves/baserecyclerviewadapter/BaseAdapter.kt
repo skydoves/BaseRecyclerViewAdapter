@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2018 skydoves
  *
@@ -17,20 +16,24 @@
 
 package com.skydoves.baserecyclerviewadapter
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
-import androidx.annotation.LayoutRes
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import java.util.*
+import androidx.annotation.LayoutRes
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
+import androidx.recyclerview.widget.RecyclerView
+import java.util.ArrayList
 
-@Suppress( "unused", "MemberVisibilityCanBePrivate")
-abstract class BaseAdapter : RecyclerView.Adapter<BaseViewHolder>(), LifecycleObserver {
-    val sections = ArrayList<MutableList<Any>>()
+/** BaseAdapter is an abstract class for structuring the base adapter class. */
+@Suppress("unused", "MemberVisibilityCanBePrivate", "RedundantOverride", "RedundantVisibilityModifier")
+abstract class BaseAdapter :
+        RecyclerView.Adapter<BaseViewHolder>(), LifecycleObserver {
+    /** data holding list attribute. */
+    private val sections = ArrayList<MutableList<Any>>()
 
+    /** gets mutable section list. */
     fun sections(): MutableList<MutableList<Any>> {
         return sections
     }
@@ -53,8 +56,12 @@ abstract class BaseAdapter : RecyclerView.Adapter<BaseViewHolder>(), LifecycleOb
         sections[section].add(item)
     }
 
-    fun <T> addItemsOnSection(section: Int, items: List<T>) {
+    fun <T> addItemListOnSection(section: Int, items: List<T>) {
         sections[section].addAll(ArrayList<Any>(items))
+    }
+
+    fun removeItemOnSection(section: Int, item: Any) {
+        sections[section].remove(item)
     }
 
     fun <T> setSection(row: Int, section: List<T>) {
@@ -66,7 +73,7 @@ abstract class BaseAdapter : RecyclerView.Adapter<BaseViewHolder>(), LifecycleOb
     }
 
     fun <T> sectionOrderChange(row: Int) {
-        Collections.reverse(sections[row])
+        sections[row].reverse()
     }
 
     fun <T> removeSection(location: Int) {

@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2018 skydoves
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.skydoves.baserecyclerviewadapterdemo.viewholder
 
 import android.view.View
@@ -6,12 +22,12 @@ import com.skydoves.baserecyclerviewadapterdemo.model.SampleItem
 import kotlinx.android.synthetic.main.item_sample.view.*
 import org.jetbrains.anko.image
 
-/**
- * Developed by skydoves on 2018-03-25.
- * Copyright (c) 2018 skydoves rights reserved.
- */
-
-class SampleViewHolder(view: View, private val delegate: Delegate) : BaseViewHolder(view) {
+@Suppress("CanBeParameter")
+class SampleViewHolder(
+    private val view: View,
+    private val delegate: Delegate
+)
+    : BaseViewHolder(view) {
 
     private lateinit var sampleItem: SampleItem
 
@@ -20,7 +36,7 @@ class SampleViewHolder(view: View, private val delegate: Delegate) : BaseViewHol
     }
 
     override fun bindData(data: Any) {
-        if(data is SampleItem) {
+        if (data is SampleItem) {
             sampleItem = data
             drawItem()
         }

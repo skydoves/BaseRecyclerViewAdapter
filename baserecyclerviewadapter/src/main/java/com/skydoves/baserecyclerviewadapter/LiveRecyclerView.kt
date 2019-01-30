@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2018 skydoves
  *
@@ -17,15 +16,15 @@
 
 package com.skydoves.baserecyclerviewadapter
 
+import android.content.Context
+import android.util.AttributeSet
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import android.content.Context
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.util.AttributeSet
 
-@Suppress( "unused", "MemberVisibilityCanBePrivate")
+@Suppress("unused", "MemberVisibilityCanBePrivate")
 class LiveRecyclerView : RecyclerView {
 
     private var loadPublisher = MutableLiveData<Int>()
@@ -51,7 +50,7 @@ class LiveRecyclerView : RecyclerView {
                     else -> return
                 }
 
-                if(totalPage < pageCount || isLoading) return
+                if (totalPage < pageCount || isLoading) return
 
                 if ((visibleItemCount + firstVisibleItemPosition + pagingThreshold) >= totalItemCount)
                     loadPublisher.value = pageCount

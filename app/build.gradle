@@ -32,3 +32,5 @@ dependencies {
     implementation "com.github.skydoves:elasticviews:2.0.2"
     implementation project(":baserecyclerviewadapter")
 }
+
+apply from: '../spotless.gradle'
