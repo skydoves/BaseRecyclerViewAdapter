@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+@Suppress("SpellCheckingInspection", "MemberVisibilityCanBePrivate", "unused")
 class RecyclerViewPaginator(
     private val recyclerView: RecyclerView,
     private val isLoading: () -> Boolean,
