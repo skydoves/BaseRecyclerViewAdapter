@@ -27,24 +27,24 @@ import com.skydoves.baserecyclerviewadapterdemo.viewholder.SampleViewHolder
 
 @Suppress("PrivatePropertyName")
 class SampleAdapter0(private val delegate: SampleViewHolder.Delegate)
-    : BaseAdapter() {
+  : BaseAdapter() {
 
-    private val section_item = 0
+  private val section_item = 0
 
-    init {
-        addSection(ArrayList<SampleItem>())
-    }
+  init {
+    addSection(ArrayList<SampleItem>())
+  }
 
-    fun addItems(sampleItems: List<SampleItem>) {
-        addItemListOnSection(section_item, sampleItems)
-        notifyDataSetChanged()
-    }
+  fun addItems(sampleItems: List<SampleItem>) {
+    addItemListOnSection(section_item, sampleItems)
+    notifyDataSetChanged()
+  }
 
-    override fun layout(sectionRow: SectionRow): Int {
-        return R.layout.item_sample
-    }
+  override fun layout(sectionRow: SectionRow): Int {
+    return R.layout.item_sample
+  }
 
-    override fun viewHolder(layout: Int, view: View): BaseViewHolder {
-        return SampleViewHolder(view, delegate)
-    }
+  override fun viewHolder(layout: Int, view: View): BaseViewHolder {
+    return SampleViewHolder(view, delegate)
+  }
 }

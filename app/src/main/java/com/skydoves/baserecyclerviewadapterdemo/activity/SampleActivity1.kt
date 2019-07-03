@@ -29,21 +29,21 @@ import org.jetbrains.anko.toast
 
 class SampleActivity1 : AppCompatActivity(), SampleViewHolder.Delegate {
 
-    private val adapter by lazy { SampleAdapter1(this) }
+  private val adapter by lazy { SampleAdapter1(this) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sample1)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_sample1)
 
-        sample1_recyclerView.adapter = adapter
-        sample1_recyclerView.layoutManager = LinearLayoutManager(this)
+    sample1_recyclerView.adapter = adapter
+    sample1_recyclerView.layoutManager = LinearLayoutManager(this)
 
-        for (i in 0..5) {
-            adapter.addItems(i, MockSamples.mockSampleItems(this, 3))
-        }
+    for (i in 0..5) {
+      adapter.addItems(i, MockSamples.mockSampleItems(this, 3))
     }
+  }
 
-    override fun onItemClick(sampleItem: SampleItem) {
-        toast(sampleItem.name)
-    }
+  override fun onItemClick(sampleItem: SampleItem) {
+    toast(sampleItem.name)
+  }
 }

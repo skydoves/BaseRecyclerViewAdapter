@@ -1,35 +1,25 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply from: '../dependencies.gradle'
 
 android {
-    compileSdkVersion 28
-
+    compileSdkVersion versions.compileSdk
     defaultConfig {
         applicationId "com.skydoves.baserecyclerviewadapterdemo"
-        minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        multiDexEnabled true
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    lintOptions {
-        abortOnError false
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
     }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:$accompat_version"
-    implementation "androidx.recyclerview:recyclerview:$androidx_version"
-    implementation "org.jetbrains.anko:anko:$anko_version"
-    implementation "com.github.skydoves:elasticviews:2.0.2"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "androidx.appcompat:appcompat:$versions.androidxAppcompat"
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
+    implementation "org.jetbrains.anko:anko:$versions.anko"
+    implementation "com.github.skydoves:elasticviews:2.0.3"
     implementation project(":baserecyclerviewadapter")
 }
 

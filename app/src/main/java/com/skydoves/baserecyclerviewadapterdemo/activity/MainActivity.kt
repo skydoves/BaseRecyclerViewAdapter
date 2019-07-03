@@ -24,12 +24,12 @@ import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
 
-        button0.setOnClickListener { startActivity<SampleActivity0>() }
-        button1.setOnClickListener { startActivity<SampleActivity1>() }
-        button2.setOnClickListener { startActivity<SampleActivity2>() }
-    }
+    button0.setOnClickListener { startActivity<SampleActivity0>() }
+    button1.setOnClickListener { startActivity<SampleActivity1>() }
+    button2.setOnClickListener { startActivity<SampleActivity2>() }
+  }
 }

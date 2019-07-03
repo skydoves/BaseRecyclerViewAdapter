@@ -24,35 +24,34 @@ import org.jetbrains.anko.image
 
 @Suppress("CanBeParameter")
 class SampleViewHolder(
-    private val view: View,
-    private val delegate: Delegate
-)
-    : BaseViewHolder(view) {
+  private val view: View,
+  private val delegate: Delegate
+) : BaseViewHolder(view) {
 
-    private lateinit var sampleItem: SampleItem
+  private lateinit var sampleItem: SampleItem
 
-    interface Delegate {
-        fun onItemClick(sampleItem: SampleItem)
+  interface Delegate {
+    fun onItemClick(sampleItem: SampleItem)
+  }
+
+  override fun bindData(data: Any) {
+    if (data is SampleItem) {
+      sampleItem = data
+      drawItem()
     }
+  }
 
-    override fun bindData(data: Any) {
-        if (data is SampleItem) {
-            sampleItem = data
-            drawItem()
-        }
+  private fun drawItem() {
+    itemView.run {
+      sample0_avatar.image = sampleItem.image
+      sample0_name.text = sampleItem.name
+      sample0_content.text = sampleItem.content
     }
+  }
 
-    private fun drawItem() {
-        itemView.run {
-            sample0_avatar.image = sampleItem.image
-            sample0_name.text = sampleItem.name
-            sample0_content.text = sampleItem.content
-        }
-    }
+  override fun onClick(v: View?) {
+    delegate.onItemClick(this.sampleItem)
+  }
 
-    override fun onClick(v: View?) {
-        delegate.onItemClick(this.sampleItem)
-    }
-
-    override fun onLongClick(v: View?) = false
+  override fun onLongClick(v: View?) = false
 }

@@ -22,15 +22,15 @@ import kotlinx.android.synthetic.main.item_sample1_header.view.*
 
 @Suppress("ClassName", "CanBeParameter")
 class SampleViewHolder1_Header(private val view: View)
-    : BaseViewHolder(view) {
+  : BaseViewHolder(view) {
 
-    override fun bindData(data: Any) {
-        if (data is String) {
-            itemView.sample1_header.text = data
-        }
+  override fun bindData(data: Any) {
+    if (data is String) {
+      itemView.sample1_header.text = data
     }
+  }
 
-    override fun onClick(v: View?) = Unit
+  override fun onClick(v: View?) = Unit
 
-    override fun onLongClick(v: View?) = false
+  override fun onLongClick(v: View?) = false
 }
