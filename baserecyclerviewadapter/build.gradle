@@ -1,25 +1,15 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.dokka'
-apply plugin: 'com.novoda.bintray-release'
-
-publish {
-    userOrg = 'devmagician'
-    groupId = 'com.github.skydoves'
-    artifactId = 'baserecyclerviewadapter'
-    publishVersion = '0.1.3'
-    desc = 'This is BaseRecyclerViewAdapter by skydoves'
-    website = 'https://github.com/skydoves/BaseRecyclerViewAdapter'
-    issueTracker = "${website}/issues"
-    repository = "${website}.git"
-}
+apply from: '../dependencies.gradle'
+apply from: '../publish.gradle'
 
 android {
-    compileSdkVersion 28
-
+    compileSdkVersion 29
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
     }
@@ -31,9 +21,8 @@ dokka {
 }
 
 dependencies {
-    implementation "androidx.recyclerview:recyclerview:$androidx_version"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.lifecycle:lifecycle-livedata:$livedata_version"
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 }
 
 tasks.withType(Javadoc) {
