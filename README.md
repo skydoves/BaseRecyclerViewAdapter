@@ -10,6 +10,7 @@ And lets you implement paging and endless-scrolling for RecyclerView easily.<br>
 ![demo1](https://user-images.githubusercontent.com/24237865/37874865-16e6bb42-3072-11e8-9c6c-aa739cb05410.png)
 
 ## Including in your project
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/baserecyclerviewadapter.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22baserecyclerviewadapter%22)
 [![JitPack](https://jitpack.io/v/skydoves/BaseRecyclerViewAdapter.svg)](https://jitpack.io/#skydoves/BaseRecyclerViewAdapter)</br>
 #### Gradle
 Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
@@ -23,7 +24,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:baserecyclerviewadapter:0.1.4"
+    implementation "com.github.skydoves:baserecyclerviewadapter:1.0.4"
 }
 ```
 
