@@ -3,18 +3,27 @@
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Build Status](https://travis-ci.org/skydoves/BaseRecyclerViewAdapter.svg?branch=master)](https://travis-ci.org/skydoves/BaseRecyclerViewAdapter)
 [![Javadoc](https://img.shields.io/badge/Javadoc-BaseRecyclerViewAdapter-yellow.svg)](https://skydoves.github.io/libraries/baserecyclerviewadapter/javadoc/baserecyclerviewadapter/com.skydoves.baserecyclerviewadapter/index.html)<br>
-Adapter and ViewHolder that let you implement easily and a RecyclerView to be split into multi-sectioned.<br>
-And lets you implement paging and endless-recyclerView easily.<br>
+BaseAdapter and BaseViewHolder for binding each other fastly and implementing multi-sectioned rows easily.<br>
+And lets you implement paging and endless-scrolling for RecyclerView easily.<br>
 
 ![demo0](https://user-images.githubusercontent.com/24237865/37874830-b05ad8ea-3071-11e8-906e-670f56d6912b.png)
 ![demo1](https://user-images.githubusercontent.com/24237865/37874865-16e6bb42-3072-11e8-9c6c-aa739cb05410.png)
 
 ## Including in your project
-[![Download](https://api.bintray.com/packages/devmagician/maven/baserecyclerviewadapter/images/download.svg)](https://bintray.com/devmagician/maven/baserecyclerviewadapter/_latestVersion) [![JitPack](https://jitpack.io/v/skydoves/BaseRecyclerViewAdapter.svg)](https://jitpack.io/#skydoves/BaseRecyclerViewAdapter)
-#### build.gradle
+[![JitPack](https://jitpack.io/v/skydoves/BaseRecyclerViewAdapter.svg)](https://jitpack.io/#skydoves/BaseRecyclerViewAdapter)</br>
+#### Gradle
+Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
+```gradle
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+```
+And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:baserecyclerviewadapter:0.1.3"
+    implementation "com.github.skydoves:baserecyclerviewadapter:0.1.4"
 }
 ```
 
