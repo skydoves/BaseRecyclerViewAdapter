@@ -17,43 +17,41 @@
 package com.skydoves.baserecyclerviewadapterdemo.activity
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.skydoves.baserecyclerviewadapter.RecyclerViewPaginator
 import com.skydoves.baserecyclerviewadapterdemo.MockSamples
-import com.skydoves.baserecyclerviewadapterdemo.R
 import com.skydoves.baserecyclerviewadapterdemo.adapter.SampleAdapter0
+import com.skydoves.baserecyclerviewadapterdemo.databinding.ActivitySample2Binding
 import com.skydoves.baserecyclerviewadapterdemo.model.SampleItem
 import com.skydoves.baserecyclerviewadapterdemo.viewholder.SampleViewHolder
-import kotlinx.android.synthetic.main.activity_sample2.*
-import org.jetbrains.anko.toast
 
 @Suppress("SpellCheckingInspection")
 class SampleActivity2 : AppCompatActivity(), SampleViewHolder.Delegate {
 
   private val adapter by lazy { SampleAdapter0(this) }
-  private lateinit var paginator: RecyclerViewPaginator
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_sample2)
 
-    sample2_recyclerView.adapter = adapter
-    sample2_recyclerView.layoutManager = LinearLayoutManager(this)
-    paginator = RecyclerViewPaginator(
-      recyclerView = sample2_recyclerView,
-      onLast = { false },
-      loadMore = { loadMore() },
-      isLoading = { false }
+    val binding = ActivitySample2Binding.inflate(layoutInflater)
+    setContentView(binding.root)
+
+    binding.sample2RecyclerView.adapter = adapter
+    RecyclerViewPaginator(
+      recyclerView = binding.sample2RecyclerView,
+      isLoading = { false },
+      loadMore = { loadMore(it) }
     )
-    loadMore()
+
+    loadMore(1)
   }
 
-  private fun loadMore() {
-    adapter.addItems(MockSamples.mockSampleItemsRandom(this, paginator.currentPage * 10, 10))
+  private fun loadMore(page: Int) {
+    adapter.addItems(MockSamples.mockSampleItemsRandom(this, page * 20, 20))
   }
 
   override fun onItemClick(sampleItem: SampleItem) {
-    toast(sampleItem.name)
+    Toast.makeText(this, sampleItem.name, Toast.LENGTH_SHORT).show()
   }
 }

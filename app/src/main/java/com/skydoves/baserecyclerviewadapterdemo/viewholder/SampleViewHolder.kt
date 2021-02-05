@@ -18,15 +18,13 @@ package com.skydoves.baserecyclerviewadapterdemo.viewholder
 
 import android.view.View
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
+import com.skydoves.baserecyclerviewadapterdemo.databinding.ItemSampleBinding
 import com.skydoves.baserecyclerviewadapterdemo.model.SampleItem
-import kotlinx.android.synthetic.main.item_sample.view.*
-import org.jetbrains.anko.image
 
-@Suppress("CanBeParameter")
 class SampleViewHolder(
-  private val view: View,
+  private val binding: ItemSampleBinding,
   private val delegate: Delegate
-) : BaseViewHolder(view) {
+) : BaseViewHolder(binding.root) {
 
   private lateinit var sampleItem: SampleItem
 
@@ -42,16 +40,12 @@ class SampleViewHolder(
   }
 
   private fun drawItem() {
-    itemView.run {
-      sample0_avatar.image = sampleItem.image
-      sample0_name.text = sampleItem.name
-      sample0_content.text = sampleItem.content
-    }
+    binding.sample0Avatar.setImageDrawable(sampleItem.image)
+    binding.sample0Name.text = sampleItem.name
+    binding.sample0Content.text = sampleItem.content
   }
 
-  override fun onClick(v: View?) {
-    delegate.onItemClick(this.sampleItem)
-  }
+  override fun onClick(v: View?) = delegate.onItemClick(sampleItem)
 
   override fun onLongClick(v: View?) = false
 }

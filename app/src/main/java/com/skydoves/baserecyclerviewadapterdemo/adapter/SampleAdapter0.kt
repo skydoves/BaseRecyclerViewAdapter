@@ -16,18 +16,19 @@
 
 package com.skydoves.baserecyclerviewadapterdemo.adapter
 
+import android.view.LayoutInflater
 import android.view.View
-
 import com.skydoves.baserecyclerviewadapter.BaseAdapter
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 import com.skydoves.baserecyclerviewadapter.SectionRow
 import com.skydoves.baserecyclerviewadapterdemo.R
+import com.skydoves.baserecyclerviewadapterdemo.databinding.ItemSampleBinding
 import com.skydoves.baserecyclerviewadapterdemo.model.SampleItem
 import com.skydoves.baserecyclerviewadapterdemo.viewholder.SampleViewHolder
 
 @Suppress("PrivatePropertyName")
-class SampleAdapter0(private val delegate: SampleViewHolder.Delegate)
-  : BaseAdapter() {
+class SampleAdapter0(private val delegate: SampleViewHolder.Delegate) :
+  BaseAdapter() {
 
   private val section_item = 0
 
@@ -36,15 +37,15 @@ class SampleAdapter0(private val delegate: SampleViewHolder.Delegate)
   }
 
   fun addItems(sampleItems: List<SampleItem>) {
+    val previous = sections()[section_item].size
     addItemListOnSection(section_item, sampleItems)
-    notifyDataSetChanged()
+    notifyItemRangeChanged(previous, sampleItems.size)
   }
 
-  override fun layout(sectionRow: SectionRow): Int {
-    return R.layout.item_sample
-  }
+  override fun layout(sectionRow: SectionRow): Int = R.layout.item_sample
 
   override fun viewHolder(layout: Int, view: View): BaseViewHolder {
-    return SampleViewHolder(view, delegate)
+    val binding = ItemSampleBinding.inflate(LayoutInflater.from(view.context))
+    return SampleViewHolder(binding, delegate)
   }
 }

@@ -17,15 +17,13 @@
 package com.skydoves.baserecyclerviewadapterdemo.activity
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.skydoves.baserecyclerviewadapterdemo.MockSamples
-import com.skydoves.baserecyclerviewadapterdemo.R
 import com.skydoves.baserecyclerviewadapterdemo.adapter.SampleAdapter1
+import com.skydoves.baserecyclerviewadapterdemo.databinding.ActivitySample1Binding
 import com.skydoves.baserecyclerviewadapterdemo.model.SampleItem
 import com.skydoves.baserecyclerviewadapterdemo.viewholder.SampleViewHolder
-import kotlinx.android.synthetic.main.activity_sample1.*
-import org.jetbrains.anko.toast
 
 class SampleActivity1 : AppCompatActivity(), SampleViewHolder.Delegate {
 
@@ -33,10 +31,11 @@ class SampleActivity1 : AppCompatActivity(), SampleViewHolder.Delegate {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_sample1)
 
-    sample1_recyclerView.adapter = adapter
-    sample1_recyclerView.layoutManager = LinearLayoutManager(this)
+    val binding = ActivitySample1Binding.inflate(layoutInflater)
+    setContentView(binding.root)
+
+    binding.sample1RecyclerView.adapter = adapter
 
     for (i in 0..5) {
       adapter.addItems(i, MockSamples.mockSampleItems(this, 3))
@@ -44,6 +43,6 @@ class SampleActivity1 : AppCompatActivity(), SampleViewHolder.Delegate {
   }
 
   override fun onItemClick(sampleItem: SampleItem) {
-    toast(sampleItem.name)
+    Toast.makeText(this, sampleItem.name, Toast.LENGTH_SHORT).show()
   }
 }

@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply from: '../dependencies.gradle'
 
 android {
@@ -12,14 +11,19 @@ android {
         versionCode versions.versionCode
         versionName versions.versionName
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
     implementation "androidx.appcompat:appcompat:$versions.androidxAppcompat"
     implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
-    implementation "org.jetbrains.anko:anko:$versions.anko"
-    implementation "com.github.skydoves:elasticviews:2.0.3"
+    implementation "com.github.skydoves:elasticviews:$versions.elasticViews"
     implementation project(":baserecyclerviewadapter")
 }
 

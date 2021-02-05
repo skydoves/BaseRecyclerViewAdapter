@@ -27,7 +27,7 @@ class MockSamples {
   companion object {
     fun mockSampleItems(context: Context, size: Int): List<SampleItem> {
       val samples = ArrayList<SampleItem>()
-      for (i in 0..(size - 1)) {
+      for (i in 0 until size) {
         val drawable = ContextCompat.getDrawable(context, R.drawable.ic_person_black_24dp)
         drawable?.let {
           samples.add(SampleItem(drawable, "sample$i", "This is a sample content$i"))
@@ -38,18 +38,18 @@ class MockSamples {
 
     fun mockSampleItemsRandom(context: Context, offset: Int, size: Int): List<SampleItem> {
       val samples = ArrayList<SampleItem>()
-      for (i in offset..(offset + size - 1)) {
+      for (i in offset until offset + size) {
         samples.add(SampleItem(getRandomDrawable(context), "sample$i", "This is a sample content$i"))
       }
       return samples
     }
 
-    fun getRandomDrawable(context: Context): Drawable {
+    private fun getRandomDrawable(context: Context): Drawable {
       val random = Random()
-      when (random.nextInt(3)) {
-        0 -> return ContextCompat.getDrawable(context, R.drawable.face1)!!
-        1 -> return ContextCompat.getDrawable(context, R.drawable.face2)!!
-        else -> return ContextCompat.getDrawable(context, R.drawable.face3)!!
+      return when (random.nextInt(3)) {
+        0 -> ContextCompat.getDrawable(context, R.drawable.face1)!!
+        1 -> ContextCompat.getDrawable(context, R.drawable.face2)!!
+        else -> ContextCompat.getDrawable(context, R.drawable.face3)!!
       }
     }
   }

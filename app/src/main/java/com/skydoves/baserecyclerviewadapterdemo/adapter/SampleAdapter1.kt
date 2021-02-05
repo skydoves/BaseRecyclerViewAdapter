@@ -17,18 +17,20 @@
 package com.skydoves.baserecyclerviewadapterdemo.adapter
 
 import android.content.res.Resources
+import android.view.LayoutInflater
 import android.view.View
 import com.skydoves.baserecyclerviewadapter.BaseAdapter
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 import com.skydoves.baserecyclerviewadapter.SectionRow
 import com.skydoves.baserecyclerviewadapterdemo.R
+import com.skydoves.baserecyclerviewadapterdemo.databinding.ItemSample1HeaderBinding
+import com.skydoves.baserecyclerviewadapterdemo.databinding.ItemSampleBinding
 import com.skydoves.baserecyclerviewadapterdemo.model.SampleItem
 import com.skydoves.baserecyclerviewadapterdemo.viewholder.SampleViewHolder
-import com.skydoves.baserecyclerviewadapterdemo.viewholder.SampleViewHolder1_Header
+import com.skydoves.baserecyclerviewadapterdemo.viewholder.SampleViewHolder1Header
 
-@Suppress("LiftReturnOrAssignment")
-class SampleAdapter1(private val delegate: SampleViewHolder.Delegate)
-  : BaseAdapter() {
+class SampleAdapter1(private val delegate: SampleViewHolder.Delegate) :
+  BaseAdapter() {
 
   init {
     for (i in 0..5) {
@@ -43,16 +45,22 @@ class SampleAdapter1(private val delegate: SampleViewHolder.Delegate)
   }
 
   override fun layout(sectionRow: SectionRow): Int {
-    when (sectionRow.row) {
-      0 -> return R.layout.item_sample1_header
-      else -> return R.layout.item_sample
+    return when (sectionRow.row) {
+      0 -> R.layout.item_sample1_header
+      else -> R.layout.item_sample
     }
   }
 
   override fun viewHolder(layout: Int, view: View): BaseViewHolder {
     when (layout) {
-      R.layout.item_sample1_header -> return SampleViewHolder1_Header(view)
-      R.layout.item_sample -> return SampleViewHolder(view, delegate)
+      R.layout.item_sample1_header -> {
+        val binding = ItemSample1HeaderBinding.inflate(LayoutInflater.from(view.context))
+        return SampleViewHolder1Header(binding)
+      }
+      R.layout.item_sample -> {
+        val binding = ItemSampleBinding.inflate(LayoutInflater.from(view.context))
+        return SampleViewHolder(binding, delegate)
+      }
     }
     throw Resources.NotFoundException("not founded layout")
   }

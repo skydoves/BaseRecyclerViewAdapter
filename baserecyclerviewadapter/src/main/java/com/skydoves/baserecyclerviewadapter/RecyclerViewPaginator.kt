@@ -14,21 +14,23 @@
  * limitations under the License.
  */
 
+@file:Suppress("unused")
+
 package com.skydoves.baserecyclerviewadapter
 
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
-@Suppress("SpellCheckingInspection", "MemberVisibilityCanBePrivate", "unused")
 class RecyclerViewPaginator(
-  private val recyclerView: RecyclerView,
+  recyclerView: RecyclerView,
   private val isLoading: () -> Boolean,
   private val loadMore: (Int) -> Unit,
   private val onLast: () -> Boolean = { true }
 ) : RecyclerView.OnScrollListener() {
 
-  var threshold = 10
+  var threshold: Int = 10
   var currentPage: Int = 0
 
   var endWithAuto = false
@@ -40,26 +42,30 @@ class RecyclerViewPaginator(
   override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
     super.onScrolled(recyclerView, dx, dy)
 
-    val layoutManager = recyclerView.layoutManager
-    layoutManager?.let {
+    recyclerView.layoutManager?.let {
       val visibleItemCount = it.childCount
       val totalItemCount = it.itemCount
-      val firstVisibleItemPosition = when (layoutManager) {
-        is LinearLayoutManager -> layoutManager.findLastVisibleItemPosition()
-        is GridLayoutManager -> layoutManager.findLastVisibleItemPosition()
+      val lastVisibleItemPosition = when (it) {
+        is LinearLayoutManager -> it.findLastVisibleItemPosition()
+        is GridLayoutManager -> it.findLastVisibleItemPosition()
+        is StaggeredGridLayoutManager -> findLastVisibleItemPosition(it.findLastVisibleItemPositions(null))
         else -> return
       }
 
       if (onLast() || isLoading()) return
 
       if (endWithAuto) {
-        if (visibleItemCount + firstVisibleItemPosition == totalItemCount) return
+        if (visibleItemCount + lastVisibleItemPosition == totalItemCount) return
       }
 
-      if ((visibleItemCount + firstVisibleItemPosition + threshold) >= totalItemCount) {
+      if ((visibleItemCount + lastVisibleItemPosition + threshold) >= totalItemCount) {
         loadMore(++currentPage)
       }
     }
+  }
+
+  private fun findLastVisibleItemPosition(lastVisibleItems: IntArray): Int {
+    return lastVisibleItems.maxOfOrNull { it } ?: lastVisibleItems[0]
   }
 
   fun resetCurrentPage() {

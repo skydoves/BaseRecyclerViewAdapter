@@ -18,15 +18,14 @@ package com.skydoves.baserecyclerviewadapterdemo.viewholder
 
 import android.view.View
 import com.skydoves.baserecyclerviewadapter.BaseViewHolder
-import kotlinx.android.synthetic.main.item_sample1_header.view.*
+import com.skydoves.baserecyclerviewadapterdemo.databinding.ItemSample1HeaderBinding
 
-@Suppress("ClassName", "CanBeParameter")
-class SampleViewHolder1_Header(private val view: View)
-  : BaseViewHolder(view) {
+class SampleViewHolder1Header(private val binding: ItemSample1HeaderBinding) :
+  BaseViewHolder(binding.root) {
 
   override fun bindData(data: Any) {
     if (data is String) {
-      itemView.sample1_header.text = data
+      binding.sample1Header.text = data
     }
   }
 

@@ -16,20 +16,21 @@
 
 package com.skydoves.baserecyclerviewadapterdemo.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.skydoves.baserecyclerviewadapterdemo.R
-import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.startActivity
+import com.skydoves.baserecyclerviewadapterdemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
 
-    button0.setOnClickListener { startActivity<SampleActivity0>() }
-    button1.setOnClickListener { startActivity<SampleActivity1>() }
-    button2.setOnClickListener { startActivity<SampleActivity2>() }
+    val binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
+
+    binding.button0.setOnClickListener { startActivity(Intent(this, SampleActivity0::class.java)) }
+    binding.button1.setOnClickListener { startActivity(Intent(this, SampleActivity1::class.java)) }
+    binding.button2.setOnClickListener { startActivity(Intent(this, SampleActivity2::class.java)) }
   }
 }

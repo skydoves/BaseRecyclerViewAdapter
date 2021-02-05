@@ -1,67 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/layout_background"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/layout_background"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/background"
+  android:orientation="vertical"
+  android:padding="15dp"
+  android:weightSum="3.2">
+
+  <com.skydoves.elasticviews.ElasticButton
+    android:id="@+id/button0"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
-    android:orientation="vertical"
-    android:weightSum="3.2"
-    android:padding="15dp">
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:padding="15dp"
+    app:button_backgroundColor="@color/colorAccent"
+    app:button_duration="150"
+    app:button_labelColor="@color/background"
+    app:button_labelSize="21"
+    app:button_labelStyle="bold"
+    app:button_labelText="BaseAdapter"
+    app:button_round="20"
+    app:button_scale="0.8" />
 
-    <com.skydoves.elasticviews.ElasticButton
-        android:id="@+id/button0"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="15dp"
-        app:button_backgroundColor="@color/colorAccent"
-        app:button_duration="150"
-        app:button_scale="0.8"
-        app:button_round="20"
-        app:button_labelText="BaseAdapter"
-        app:button_labelStyle="bold"
-        app:button_labelColor="@color/background"
-        app:button_labelSize="21"/>
+  <Space
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.1" />
 
-    <androidx.legacy.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"/>
+  <com.skydoves.elasticviews.ElasticButton
+    android:id="@+id/button1"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:padding="15dp"
+    app:button_backgroundColor="@color/green"
+    app:button_duration="150"
+    app:button_labelColor="@color/background"
+    app:button_labelSize="21"
+    app:button_labelStyle="bold"
+    app:button_labelText="BaseTitleAdapter"
+    app:button_round="20"
+    app:button_scale="0.8" />
 
-    <com.skydoves.elasticviews.ElasticButton
-        android:id="@+id/button1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="15dp"
-        app:button_backgroundColor="@color/green"
-        app:button_duration="150"
-        app:button_scale="0.8"
-        app:button_round="20"
-        app:button_labelText="BaseTitleAdapter"
-        app:button_labelStyle="bold"
-        app:button_labelColor="@color/background"
-        app:button_labelSize="21"/>
+  <Space
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.1" />
 
-    <androidx.legacy.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"/>
-
-    <com.skydoves.elasticviews.ElasticButton
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="15dp"
-        app:button_backgroundColor="@color/red"
-        app:button_duration="150"
-        app:button_scale="0.8"
-        app:button_round="20"
-        app:button_labelText="Endless RecyclerView"
-        app:button_labelStyle="bold"
-        app:button_labelColor="@color/background"
-        app:button_labelSize="21"/>
+  <com.skydoves.elasticviews.ElasticButton
+    android:id="@+id/button2"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:padding="15dp"
+    app:button_backgroundColor="@color/red"
+    app:button_duration="150"
+    app:button_labelColor="@color/background"
+    app:button_labelSize="21"
+    app:button_labelStyle="bold"
+    app:button_labelText="Endless RecyclerView"
+    app:button_round="20"
+    app:button_scale="0.8" />
 </LinearLayout>

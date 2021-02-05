@@ -1,33 +1,24 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.dokka'
 apply from: '../dependencies.gradle'
-apply from: '../publish.gradle'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion versions.compileSdk
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
     }
-}
-
-dokka {
-    outputFormat = 'html'
-    outputDirectory = "$buildDir/javadoc"
+    buildFeatures {
+        viewBinding true
+        buildConfig false
+    }
 }
 
 dependencies {
     implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
-}
-
-tasks.withType(Javadoc) {
-    excludes = ['**/*.kt']
-    options.addBooleanOption('Xdoclint:none', true)
 }
 
 apply from: '../spotless.gradle'
